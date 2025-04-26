@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
+  const navigate =useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     number: "",
@@ -17,7 +20,41 @@ const SignupPage = () => {
 
   const handelFormSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    const localStorageData = localStorage.getItem("LoggedInUser");
+  
+    // For first time user when no data exists
+    if (!localStorageData) {
+      const newUserArray = [formData]; // Store as array from beginning
+      localStorage.setItem("LoggedInUser", JSON.stringify(newUserArray));
+      toast.success("Successfully Registered!");
+      navigate("/signin");
+      return;
+    }
+  
+    // For existing users
+    try {
+      const existingUsers = JSON.parse(localStorageData);
+      const users = Array.isArray(existingUsers) ? existingUsers : [existingUsers];
+  
+      // Check if email already exists
+      const emailExists = users.some(user => user.email === formData.email);
+      
+      if (emailExists) {
+        toast.error("Your email is already registered.");
+        navigate("/");
+        return;
+      }
+  
+      // Add new user
+      users.push(formData);
+      localStorage.setItem("LoggedInUser", JSON.stringify(users));
+      toast.success("Successfully Registered!");
+      navigate("/signin");
+      
+    } catch (error) {
+      console.error("Error processing user data:", error);
+      toast.error("Registration failed. Please try again.");
+    }
   };
 
   return (

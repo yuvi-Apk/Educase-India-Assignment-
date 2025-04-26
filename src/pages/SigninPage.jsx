@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const SigninPage = () => {
+  const navigate =useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -8,7 +11,25 @@ const SigninPage = () => {
 
   const handelFormSubmit = (e) => {
     e.preventDefault(); // Corrected method
-    console.log(formData);
+    // console.log(formData);
+
+    //authentication check of user 
+    const localStorageData=localStorage.getItem("LoggedInUser");
+    const LoggedInUser=JSON.parse(localStorageData);
+
+    if(formData.email===LoggedInUser.email && formData.password===LoggedInUser.password){
+    toast.success('Logged In Successfuly!');
+    navigate("/profile");
+
+    }else{
+      toast.error("Logged Failed! Register First !!");
+      navigate("/signup");
+    }
+
+    // console.log(LoggedInUser);
+
+
+
   };
 
   return (

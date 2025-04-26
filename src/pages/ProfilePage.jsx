@@ -1,6 +1,6 @@
 import React from "react";
 import AvatarImage from "../assets/Avatar.png";
-import DemoImage from "../assets/yuvi.jpeg"
+import DemoImage from "../../public/yuvi.jpeg"
 import { FaCamera } from "react-icons/fa";
 
 const ProfilePage = () => {

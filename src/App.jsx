@@ -6,12 +6,12 @@ import PageNotFound from "./pages/PageNotFound.jsx";
 import SigninPage from "./pages/SigninPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import LoginForm from "./components/LoginForm.jsx";
-import RadioButtonDemo from "./components/TestRadioButton.jsx"
+import RadioButtonDemo from "./components/TestRadioButton.jsx";
+import { Toaster } from "react-hot-toast";
 const App = () => {
   return (
     <div>
       <Routes>
-
         <Route path="/" element={<HomePage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/signin" element={<SigninPage />} />
@@ -19,8 +19,9 @@ const App = () => {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/test" element={<LoginForm />} />
 
-        <Route path="radio" element={<RadioButtonDemo/>}/>
+        <Route path="radio" element={<RadioButtonDemo />} />
       </Routes>
+      <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
 };
