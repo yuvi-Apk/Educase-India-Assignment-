@@ -17,7 +17,9 @@ const SigninPage = () => {
     const localStorageData=localStorage.getItem("LoggedInUser");
     const LoggedInUser=JSON.parse(localStorageData);
 
-    if(formData.email===LoggedInUser.email && formData.password===LoggedInUser.password){
+    const user=LoggedInUser.find((checkUser)=>formData.email===checkUser.email && formData.password===checkUser.password)
+    
+    if(user){
     toast.success('Logged In Successfuly!');
     navigate("/profile");
 
