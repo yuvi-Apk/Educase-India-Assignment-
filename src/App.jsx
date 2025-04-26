@@ -5,8 +5,7 @@ import SignupPage from "./pages/SignupPage.jsx";
 import PageNotFound from "./pages/PageNotFound.jsx";
 import SigninPage from "./pages/SigninPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
-import LoginForm from "./components/LoginForm.jsx";
-import RadioButtonDemo from "./components/TestRadioButton.jsx";
+
 import { Toaster } from "react-hot-toast";
 const App = () => {
   return (
@@ -17,9 +16,7 @@ const App = () => {
         <Route path="/signin" element={<SigninPage />} />
         <Route path="*" element={<PageNotFound />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/test" element={<LoginForm />} />
 
-        <Route path="radio" element={<RadioButtonDemo />} />
       </Routes>
       <Toaster position="top-right" reverseOrder={false} />
     </div>
